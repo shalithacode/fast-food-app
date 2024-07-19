@@ -31,5 +31,7 @@ export function UserPrograssProvider({ children }) {
     showCheckout,
     hideCheckout,
   };
+
+  console.log(userPrograss);
   return <UserPrograssContext.Provider value={prograssValue}>{children}</UserPrograssContext.Provider>;
 }

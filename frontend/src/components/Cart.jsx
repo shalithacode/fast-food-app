@@ -14,12 +14,16 @@ function Cart() {
     userPrograssCtx.hideCart();
   }
   function handleCheckout() {
-    userPrograssCtx.hideCart();
+    userPrograssCtx.showCheckout();
     // ...
   }
   const totalPrice = cartCtx.items.reduce((accPrice, item) => accPrice + item.price * item.qty, 0);
   return (
-    <Modal className="cart" open={userPrograssCtx.prograss === "cart"}>
+    <Modal
+      className="cart"
+      open={userPrograssCtx.prograss === "cart"}
+      onClose={userPrograssCtx.prograss === "cart" ? handleHideCart : null}
+    >
       <h2>Your cart</h2>
       <ul>
         {cartCtx.items.map((item) => (
@@ -38,7 +42,7 @@ function Cart() {
         <Button textOnly onClick={handleHideCart}>
           Close
         </Button>
-        <Button onClick={handleCheckout}>Go to Checkout</Button>
+        {cartCtx.items.length > 0 && <Button onClick={handleCheckout}>Go to Checkout</Button>}
       </p>
     </Modal>
   );
